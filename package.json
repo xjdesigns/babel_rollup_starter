@@ -1,18 +1,21 @@
 {
-  "name": "front-lane-utils",
+  "name": "babel_rollup_starter",
   "description": "Javascript helper utilities for front lane applications",
   "version": "0.0.1",
   "license": "MIT",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "build": "npm run rollup",
+    "build": "npm run build:types && npm run rollup",
     "build:prod": "npm run rollup -- --environment BUILD:production",
-    "build:watch": "npm run rollup -- --watch",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:watch": "npm run build:types -- --watch & npm run rollup -- --watch",
     "lint": "eslint src/",
     "jest": "jest",
     "rollup": "rollup -c",
     "test": "npm run jest -- --watch",
-    "test:coverage": "npm run jest -- --coverage"
+    "test:coverage": "npm run jest -- --coverage",
+    "type-check": "tsc --noEmit"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
@@ -21,6 +24,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
     "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.2.0",
+    "@babel/preset-typescript": "^7.3.3",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.1.0",
     "babel-polyfill": "^6.26.0",
@@ -39,6 +43,7 @@
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-multi-entry": "^2.1.0",
     "rollup-plugin-node-resolve": "^4.0.0",
-    "rollup-plugin-uglify": "^6.0.2"
+    "rollup-plugin-uglify": "^6.0.2",
+    "typescript": "^3.3.3"
   }
 }
